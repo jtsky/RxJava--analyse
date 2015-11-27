@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 subscriber.onNext(2);
             }
         }).map(integer -> {
-            int a = 0;
-            a = a + 1;
             return "====>" + integer;
         }).subscribe(s -> Log.i(TAG, s));
 
