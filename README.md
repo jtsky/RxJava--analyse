@@ -4,13 +4,13 @@
 废话不多说 直接开始
 
 RxJava的基本用法：<br />
-Observable.create(new Observable.OnSubscribe<Integer>() {
-            @Override
-            public void call(Subscriber<? super Integer> subscriber) {
-                subscriber.onNext(2);
-            }
-        }).map(integer -> {
-            return "====>" + integer;
-        }).subscribe(s -> Log.i(TAG, s));
+```Observable.create(new Observable.OnSubscribe<Integer>() {
+```            @Override
+```         public void call(Subscriber<? super Integer> subscriber) {
+```                subscriber.onNext(2);
+```            }
+```        }).map(integer -> {
+```            return "====>" + integer;
+```       }).subscribe(s -> Log.i(TAG, s));
 <br />
 最后将会输出 ====>2
