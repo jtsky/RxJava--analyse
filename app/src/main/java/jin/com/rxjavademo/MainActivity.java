@@ -10,6 +10,7 @@ import android.view.View;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Func1;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -30,14 +31,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Observable.create(new Observable.OnSubscribe<Integer>() {
+        /*Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
                 subscriber.onNext(2);
             }
-        }).map(integer -> {
-            return "====>" + integer;
-        }).subscribe(s -> Log.i(TAG, s));
+        }).map(new Func1<Integer, String>() {
+            @Override
+            public String call(Integer integer) {
+                return "===>" + integer;
+            }
+        }).subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                Log.i(TAG, s);
+            }
+        });*/
 
         /*Observable.just(0, 1, 2, 3, 4, 5).groupBy(new Func1<Integer, Boolean>() {
             @Override
@@ -49,6 +58,49 @@ public class MainActivity extends AppCompatActivity {
                 , () -> Log.v(TAG, "COMPLETE====>"));*/
 
 
+        Observable.OnSubscribe<Integer> onSubscribe1 = new Observable.OnSubscribe<Integer>() {
+
+            @Override
+            public void call(Subscriber<? super Integer> subscriber) {
+                subscriber.onNext(2);
+            }
+        };
+
+        Observable observable1 = Observable.create(onSubscribe1);
+        Func1<Integer, String> transform1 = new Func1<Integer, String>() {
+
+            @Override
+            public String call(Integer integer) {
+                return "==" + integer;
+            }
+        };
+
+        Func1<String, String> transform2 = new Func1<String, String>() {
+
+            @Override
+            public String call(String s) {
+                return s + "==";
+            }
+        };
+
+        Subscriber<String> subscriber1 = new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+                Log.v("TAG", s);
+            }
+        };
+
+        observable1.map(transform1).map(transform2).subscribe(subscriber1);
     }
 
 }
