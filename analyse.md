@@ -181,6 +181,6 @@ onSubscribe.call(st)等于onSubscribe2.call(newSubscribr)。然后进入循环�
                 }
             }
 ```
-因为newSubscribr包含oldSubscribr的引用，所以形成循环的内毒链式调用，同时插入transformer的逻辑。
+因为newSubscribr包含oldSubscribr的引用，所以形成内部的链式调用，同时插入transformer的逻辑。
 <br />
 好了，关于lift()的分析就到这里，写得有点乱，大家凑合着看，有时间的话，会继续分析其他的模块。

@@ -1,6 +1,6 @@
 2015-11-27
 本项目的分析参考了 扔物线之前写了一篇文章 [《给 Android 开发者的 RxJava 详解》](http://gank.io/post/560e15be2dca930e00da1083#toc_1)<br />
-这是关于[Rxjava lift()](https://github.com/jtsky/RxJava--analyse/blob/master/analyse.md)函数的分析
+这里还有一篇关于[Rxjava lift()](https://github.com/jtsky/RxJava--analyse/blob/master/analyse.md)函数的分析
 <br />
 废话不多说 直接开始
 
